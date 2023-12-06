@@ -26,20 +26,20 @@ class _SummaryFyWorkspaceState extends State<SummaryFyWorkspace> {
     workspaceBox = Hive.box('workspace');
   }
 
+  String? checkUserWorkspaceInput({required String? userInput}) {
+    if (userInput == null || userInput.isEmpty) {
+      return 'This filed is required';
+    } else if (userInput.length > 8) {
+      return 'Maximum 6 characters allowed';
+    } else if (userInput.contains(" ")) {
+      return 'No space allowed';
+    }
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
-
-    String? checkUserWorkspaceInput({required String? userInput}) {
-      if (userInput == null || userInput.isEmpty) {
-        return 'This filed is required';
-      } else if (userInput.length > 8) {
-        return 'Maximum 6 characters allowed';
-      } else if (userInput.contains(" ")) {
-        return 'No space allowed';
-      }
-      return null;
-    }
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
